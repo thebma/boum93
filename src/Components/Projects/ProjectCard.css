@@ -1,0 +1,37 @@
+.projectcard-container {
+    width: calc(33% - 15px);
+    background-color: rgb(255, 255, 255);
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border-radius: 4%;
+}
+
+.projectcard-container img {
+    width: 100%;
+}
+
+.projectcard-container h3 {
+    font-size: 1.7rem;
+}
+
+.projectcard-container p {
+    padding: 20px;
+}
+
+.projectcard-container button {
+    background-color: #1d1d1d;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  
+  .projectcard-container button:hover {
+    background-color: #ff8800;
+  }

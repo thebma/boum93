@@ -1,0 +1,10 @@
+@media screen and (max-width: 900px) {
+    .navigation-column {
+        width: 100%;
+        clear:both;
+    }
+
+    .navigation {
+        height: 105px;
+    }
+}

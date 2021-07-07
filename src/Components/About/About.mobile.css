@@ -1,0 +1,9 @@
+@media screen and (max-width: 900px) {
+    .about-center {
+        width: calc(90vw - 40px - 4px);
+    }
+
+    .about-transition {
+        margin-top: 0px;
+    }
+}

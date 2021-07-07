@@ -1,0 +1,27 @@
+.projects-container {
+    background-color: #191923;
+    margin-top: -5px;
+    width: 100vw;
+}
+
+.projects-header {
+    margin: auto;
+    width: 80vw;
+    padding: 20px;
+}
+
+.projects-header h1 {
+    margin: 0;
+}
+
+.projects-content {
+    margin: auto;
+    width: 80vw;
+    padding: 20px;
+}
+
+.projects-header h1 {
+    text-align: left;
+    color: white;
+    width: 100vw;
+}
