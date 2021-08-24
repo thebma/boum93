@@ -6,7 +6,7 @@ function About()
 {
     return (
         <div id="about">
-            <img class="about-avatar" src="https://avatars.githubusercontent.com/u/50952472?v=4"/>
+            <img alt="Avatar" class="about-avatar" src="https://avatars.githubusercontent.com/u/50952472?v=4"/>
             <div class="about-center">
                 <div class="about-column about-me">
                     <h1>Alex Bouma</h1>

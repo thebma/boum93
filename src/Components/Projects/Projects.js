@@ -1,11 +1,26 @@
-import { React } from "react"
+import React, {useEffect, useState} from "react"
+import database from "../../firebase.config"
 import "./Projects.css"
 import "./ProjectCard.css"
 import "./ProjectCard.mobile.css"
 
-
 function Projects()
 {
+    const [projects, setProjects] = useState([]);
+    
+    useEffect(() => {
+        const fetchProjects = async () => {
+            const projectCollectionRequest = database.collection("projects");
+            const projectCollection = await projectCollectionRequest.get();
+            
+            projectCollection.forEach((item) => {
+                console.log(item)
+                setProjects([...projects, item.data()])
+            });
+        }
+        fetchProjects();
+    }, []);
+
     return (
         <div id="projects" class="projects-container">
             <div class="projects-header">
@@ -13,28 +28,41 @@ function Projects()
             </div>
 
             <div class="projects-content">
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
-
+                {
+                    projects && projects.map(project => {
+                        return (
+                            <ProjectCard key={project.id} project={project}/>
+                        )
+                    })
+                }
             </div>
         </div>
     );
 }
 
-function ProjectCard()
+function ProjectCard(props)
 {
+    const { project } = props;
+
     return(
       <div class="projectcard-container">
-          <h3>Project Naam</h3>
-          <img src="./project.jpg"/>
+          <h3>{project.title}</h3>
+
+            {
+                project.images && project.images.map(img => {
+                    console.log(img)
+                    return (
+                        <img alt="Project Impression" src={img}/>
+                    )                    
+                })
+            }
+
           <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac dictum lectus, eget efficitur lectus. Fusce dignissim mattis massa, nec pulvinar elit finibus id. 
+            {project.description} 
           </p>
-          <button>Bekijk</button>
+          <a href={project.source}>
+            <button>Broncode</button>
+          </a>
       </div>  
     );
 }
