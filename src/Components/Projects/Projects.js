@@ -54,7 +54,7 @@ function Projects()
                         .map(tag => {
                             return (
                                 <span 
-                                    key="tag-{tag}" 
+                                    key={tag}
                                     class="projects-tag"
                                     onClick={() => handleTagSortClick(tag)}
                                 >
@@ -70,9 +70,8 @@ function Projects()
                 {
                     projects && projects
                         .sort((a,b) => a.sort > b.sort ? 1 : -1)
-                        .filter(proj => filter == "*" ? true : proj.tags.includes(filter))
+                        .filter(proj => filter === "*" ? true : proj.tags.includes(filter))
                         .map(project => {
-                            console.log(project.title)
                             return (
                                 <ProjectCard key={project.id} project={project}/>
                             )
@@ -92,7 +91,6 @@ function ProjectCard(props)
           <h3>{project.title}</h3>
             {
                 project.images && project.images.map(img => {
-                    console.log(img)
                     return (
                         <img alt="Project Impression" src={img}/>
                     )                    
