@@ -47,7 +47,6 @@ function ProjectCard(props)
     return(
       <div class="projectcard-container">
           <h3>{project.title}</h3>
-
             {
                 project.images && project.images.map(img => {
                     console.log(img)
@@ -56,12 +55,11 @@ function ProjectCard(props)
                     )                    
                 })
             }
-
           <p>
             {project.description} 
           </p>
           <a href={project.source}>
-            <button>Broncode</button>
+            <button>Bekijk Broncode</button>
           </a>
       </div>  
     );
