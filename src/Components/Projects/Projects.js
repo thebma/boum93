@@ -6,6 +6,7 @@ import "./ProjectCard.mobile.css"
 
 function Projects()
 {
+    const [filter, setFilter] = useState("*");
     const [projects, setProjects] = useState([]);
     
     useEffect(() => {
@@ -14,26 +15,68 @@ function Projects()
             const projectCollection = await projectCollectionRequest.get();
             
             projectCollection.forEach((item) => {
-                console.log(item)
-                setProjects([...projects, item.data()])
-            });
+                setProjects(prevState => (
+                    [ ...prevState, item.data() ]
+                ))
+            })       
         }
         fetchProjects();
-    }, []);
+    }, [])
+
+    const tags = [];
+    projects.forEach(proj => {
+        proj.tags.forEach(tag => {
+            if(!tags.includes(tag)) {
+                tags.push(tag)
+            }
+        });
+    });
+
+    function handleTagSortClick(tag) {
+        setFilter(tag);
+    }
 
     return (
         <div id="projects" class="projects-container">
             <div class="projects-header">
                 <h1>Projecten</h1>
+                <div class="projects-tags">
+                    <p>Zoeken op:</p>
+                    <br/>
+                    <span
+                        key="tag-*" 
+                        class="projects-tag"
+                        onClick={() => handleTagSortClick("*")}
+                    >Alles</span>
+                    {
+                        tags && tags
+                        .sort((a,b) => { return a > b ? 1 : -1 })
+                        .map(tag => {
+                            return (
+                                <span 
+                                    key="tag-{tag}" 
+                                    class="projects-tag"
+                                    onClick={() => handleTagSortClick(tag)}
+                                >
+                                    { tag }
+                                </span>
+                            )
+                        })
+                    }
+                </div>
             </div>
 
             <div class="projects-content">
                 {
-                    projects && projects.map(project => {
-                        return (
-                            <ProjectCard key={project.id} project={project}/>
-                        )
-                    })
+                    projects && projects
+                        .sort((a,b) => a.sort > b.sort ? 1 : -1)
+                        .filter(proj => filter == "*" ? true : proj.tags.includes(filter))
+                        .map(project => {
+                            console.log(project.title)
+                            return (
+                                <ProjectCard key={project.id} project={project}/>
+                            )
+                        })
                 }
             </div>
         </div>
@@ -55,9 +98,20 @@ function ProjectCard(props)
                     )                    
                 })
             }
-          <p>
+          <p class="projectcard-desc">
             {project.description} 
           </p>
+
+          <div class="projectcard-tags">
+              {
+                  project.tags && project.tags.map(tag => {
+                    return (
+                        <span class="projectcard-tag">{tag}</span>
+                    )
+                  })
+              }
+          </div>
+
           <a href={project.source}>
             <button>Bekijk Broncode</button>
           </a>

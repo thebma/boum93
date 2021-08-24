@@ -25,3 +25,49 @@
     color: white;
     width: 100vw;
 }
+
+.projects-tag {
+    padding: 10px;
+    margin: 8px;
+    background-color: #ff9429;
+    color:rgba(61, 33, 6, 1.0);
+    display: inline-block;
+    border-radius: 10px;
+    user-select: none;
+    float:left;
+}
+
+.projects-tag:hover {
+    background-color: #ffd5ac;
+}
+
+.projects-tags {
+    float: left;
+    max-width: 100%;
+    margin-bottom:20px;
+}
+
+.projects-tags p {
+    color:white;
+    float:left;
+    margin-left: 8px;
+    width: 100%;
+    text-align: left;
+
+}
+.projectcard-tags {
+    margin-bottom: 30px;
+    
+}
+
+.projectcard-tag {
+    background-color: #191923;
+    color: white;
+    padding: 10px;
+    margin: 3px;
+    border-radius: 20px;
+}
+
+.projectcard-desc {
+    height: 100px;
+}
